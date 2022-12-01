@@ -8,7 +8,7 @@ def index():
     return render_template('index.html', title='Home')
 
 
-@app.route('/login')
+@app.route('/login', methods=['POST', 'GET'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
