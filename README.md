@@ -26,6 +26,12 @@ $ . venv/bin/activate
 $ venv\Scripts\activate
 ```
 
+### Initialize database
+```
+# migrate files to db
+$ flask db upgrade
+```
+
 
 
 
