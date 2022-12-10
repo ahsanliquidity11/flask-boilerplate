@@ -4,12 +4,14 @@ from flask_login import LoginManager
 from config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
+from flask_mail import Mail
 import logging
 from logging.handlers import RotatingFileHandler, SMTPHandler
 
 app = Flask(__name__)
 app.config.from_object(Config)
 db = SQLAlchemy(app)
+mail = Mail(app)
 migrate = Migrate(app, db)
 login = LoginManager(app)
 login.login_view = 'login'
@@ -24,7 +26,7 @@ if not app.debug:
             secure = ()
         mail_handler = SMTPHandler(
             mailhost=(app.config['MAIL_SERVER'], app.config['MAIL_PORT']),
-            fromaddr='no-reply@' + app.config['MAIL_SERVER'],
+            fromaddr=app.config['MAIL_DEFAULT_SENDER'],
             toaddrs=app.config['ADMINS'], subject='APP Failure',
             credentials=auth, secure=secure)
         mail_handler.setLevel(logging.ERROR)

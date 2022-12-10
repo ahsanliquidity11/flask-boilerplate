@@ -32,6 +32,20 @@ $ venv\Scripts\activate
 $ flask db upgrade
 ```
 
+### Email Support
+To enable email support:
 
+1. [Signup for a trial/free Twilio SendGrid account](https://signup.sendgrid.com/)
+2. Create an API key to authenticate access to SendGrid services
+3. Update env vairables in .flaskenv.example and rename to .flaskenv
+
+```
+MAIL_SERVER=smtp.sendgrid.net
+MAIL_PORT=587
+MAIL_USE_TLS=True
+MAIL_USERNAME=apikey
+MAIL_PASSWORD=<your-api-key>
+MAIL_DEFAULT_SENDER=<your-sender-email-address>
+```
 
 
