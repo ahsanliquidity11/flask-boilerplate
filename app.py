@@ -9,7 +9,6 @@ import subprocess
 from flask import Flask, request, jsonify
 from datetime import datetime
 
-openai.api_key = "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"
 
 app = Flask(__name__)
 
@@ -78,11 +77,13 @@ def divide_segments(file_path, segment_size_mb):
 def transcribe_audio_endpoint():
     data = request.json
     file_path = data.get("file_path")
-    
-         # Generate a unique output file name based on date and time
+
+     # Generate a unique output file name based on date and time
     now = datetime.now()
     date_time_str = now.strftime("%Y%m%d_%H%M%S")
     output_file = f"output_{date_time_str}.mp3"
+
+
 
     # Convert the meeting recording to audio
     convert_meet_recording_to_audio(file_path, output_file)
